@@ -17,10 +17,10 @@ const NaturalPhenoms = () => {
     let [naturals, setNaturals] = useState("none");
     let [date, setDate] = useState(setTodaysDate());
     let [inputElement, setInputElement] = useState({});
+    let [inputValue, setInputValue] = useState("");
     
     useEffect(() => {
         setInputElement(document.querySelector("#dateInput"));
-        setDate(inputElement.value);
         axios.get(`https://api.nasa.gov/planetary/apod?api_key=jcmXeccxfgqv4RNBN9ud9UAEISYq3XMNAX37xTez&date=${date}`)
             .then((response) => {
                 naturals = response.data;
@@ -33,9 +33,14 @@ const NaturalPhenoms = () => {
 
     return (
         <div>
-             <div className="dropdown">
+            <div className="dropdown">
                 <input type="date" id="dateInput"/>
-                <Button primary>Search</Button>
+                <Button onClick={function() {
+                    setInputValue(inputElement.value);
+                    setDate(inputValue);
+                    console.log(date);
+                }}
+                primary>Search</Button>
             </div>
             <NaturalCard key='ss' url={naturals.url} title={naturals.title} desc={naturals.explanation} date={naturals.date}/>
             <Pagination
