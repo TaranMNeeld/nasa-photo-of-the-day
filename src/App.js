@@ -1,13 +1,11 @@
-import React from "react";
-import "./App.css";
+import React, {Components} from "react";
+import "./App.scss";
+import NaturalPhenoms from "./components/NaturalPhenoms";
 
 function App() {
   return (
     <div className="App">
-      <p>
-        Read through the instructions in the README.md file to build your NASA
-        app! Have fun 🚀!
-      </p>
+      <NaturalPhenoms/>
     </div>
   );
 }
